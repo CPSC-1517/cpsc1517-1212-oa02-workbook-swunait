@@ -1,0 +1,27 @@
+CPSC1517
+Introduction to Application Development
+Nidaa	Aboulkacem
+Kim Joshua	Barrameda
+
+
+Daniel	Best
+Lavish	Bhardwaj
+Ian Lemuel	Burac
+Ruan	Carvalho
+Kashish	Chhabra
+Richard	Dong
+Aaron	Fong
+Susanto	Hammer
+Bohdan	Hirkyi
+Mustafa	Kilic
+Shane	Layes
+Wenling	Lyu
+David	McKinley
+Haseeb	Memon
+Allaine	Paredes
+Nghi	Pham
+Tom	PHONG
+Hamza	Said
+James	Skrlj
+Yi-Wen	Tsai
+Peter	Tyukasz
