@@ -18,7 +18,9 @@ namespace OOPDemo02
                 throw new ArgumentException(
                     "Instructor Name must not be null or empty and must contain 5 or more charcters in length");
             }
-
+           this.Name = Name;
+           
+            EmploymentType = employmentType;
         }
     }
 }
