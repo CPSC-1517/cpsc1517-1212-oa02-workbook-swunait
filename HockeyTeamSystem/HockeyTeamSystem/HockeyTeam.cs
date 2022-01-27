@@ -8,6 +8,22 @@ namespace HockeyTeamSystem
 {
     public class HockeyTeam
     {
+        // Define a computed (read-only) property for TotalPoints that
+        // sum the Points for each HockeyPlayer in the team
+        public int TotalPoints
+        {
+            get
+            {
+                int sum = 0;
+                foreach(HockeyPlayer currentPlayer in HockeyPlayers)
+                {
+                    sum += currentPlayer.Points;
+                }
+                return sum;
+            }
+        }
+
+
         // Define a fully-implemented property with a backing field for the team name
         private string _teamName;   // Define a private backing field for the property
         public string TeamName      // Define a readonly property for TeamName with a private set
