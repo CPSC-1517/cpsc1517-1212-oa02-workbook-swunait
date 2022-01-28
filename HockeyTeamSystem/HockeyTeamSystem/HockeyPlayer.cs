@@ -66,20 +66,28 @@ namespace HockeyTeamSystem
             // There should be 5 values in the tokens
             if (tokens.Length != 5)
             {
-                throw new FormatException($"CSV string not in the expected format. {csvLineText}");
+                throw new FormatException($"CSV string must contain exactly 5 values. {csvLineText}");
             }
 
+            //return new HockeyPlayer(
+            //   tokens[0],
+            //   int.Parse(tokens[1]),
+            //   (PlayerPosition)Enum.Parse(typeof(PlayerPosition), tokens[2]),
+            //   int.Parse(tokens[3]),
+            //   int.Parse(tokens[4])
+            //);
+
             return new HockeyPlayer(
-                fullName: tokens[0], 
-                primaryNumber: int.Parse(tokens[1]), 
-                position: (PlayerPosition) Enum.Parse(typeof(PlayerPosition), tokens[2]), 
-                goals: int.Parse(tokens[3]), 
+                fullName: tokens[0],
+                primaryNumber: int.Parse(tokens[1]),
+                position: (PlayerPosition)Enum.Parse(typeof(PlayerPosition), tokens[2]),
+                goals: int.Parse(tokens[3]),
                 assists: int.Parse(tokens[4])
                 );
 
         }
 
-        public static bool TryParse(string csvLineText, HockeyPlayer player)
+        public static bool TryParse(string csvLineText, out HockeyPlayer player)
         {
             bool success = false;
 
@@ -100,7 +108,6 @@ namespace HockeyTeamSystem
             return success;
 
         }
-
 
     }
 }

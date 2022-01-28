@@ -25,8 +25,34 @@ team1.AddPlayer(player3);
 team1.AddPlayer(player4);
 WriteLine(team1);
 
+// Write the list of hockey players to a CSV file
+// Step 1: Create a csv line for each hockey player and add it to a list of string values
+List<string> csvLines = new List<string>();
+foreach(HockeyPlayer currentPlayer in team1.HockeyPlayers)
+{
+    csvLines.Add(currentPlayer.ToString());
+}
+// Step 2: Write all the lines in the list of string values to a file
+File.WriteAllLines(HockeyPlayerCsvFile, csvLines);
+// Display the location absolute path of the csv data file
+WriteLine($"Successfully created csv file at: {Path.GetFullPath(HockeyPlayerCsvFile)}");
 
-
+// Read the list of hockey players from the CSV file
+try
+{
+    WriteLine("Reading from CSV file");
+    string[] csvLineArray = File.ReadAllLines(HockeyPlayerCsvFile);
+    foreach(string line in csvLineArray)
+    {
+        HockeyPlayer currentPlayer = null;
+        bool parseSuccessful = HockeyPlayer.TryParse(line, out currentPlayer);
+        WriteLine(currentPlayer);
+    }
+}
+catch (Exception ex)
+{
+    WriteLine(ex);
+}
 
 
 
