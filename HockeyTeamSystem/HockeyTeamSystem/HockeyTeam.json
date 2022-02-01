@@ -1,0 +1,44 @@
+{
+  "TotalPoints": 168,
+  "TeamName": "Edmonton Oilers",
+  "Division": 3,
+  "HockeyPlayers": [
+    {
+      "Position": 0,
+      "Goals": 29,
+      "Assists": 30,
+      "Points": 59,
+      "PrimaryNumber": 29,
+      "FullName": "Leon Draisaitl"
+    },
+    {
+      "Position": 0,
+      "Goals": 20,
+      "Assists": 37,
+      "Points": 57,
+      "PrimaryNumber": 97,
+      "FullName": "Connor McDavid"
+    },
+    {
+      "Position": 0,
+      "Goals": 3,
+      "Assists": 24,
+      "Points": 27,
+      "PrimaryNumber": 93,
+      "FullName": "Ryan Nugent-Hopkins"
+    },
+    {
+      "Position": 2,
+      "Goals": 10,
+      "Assists": 15,
+      "Points": 25,
+      "PrimaryNumber": 13,
+      "FullName": "Jesse Puljujarvi"
+    }
+  ],
+  "PlayerCount": 4,
+  "Coach": {
+    "StartDate": "May 28, 2019",
+    "FullName": "Dave Tippet"
+  }
+}
