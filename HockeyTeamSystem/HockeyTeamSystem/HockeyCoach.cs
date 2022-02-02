@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,14 +12,18 @@ namespace HockeyTeamSystem
     {
         // Define a readonly public field that can only be assigned a value
         // in the constructor
+        [JsonProperty]
         public readonly string StartDate;
+        //public string StartDate { get; set; }
 
         // Define a greedy constructor with fullName and startDate as parameters
         // The ": base(fullName)" means pass fullName to the base class (Person) constructor
+        [JsonConstructor]
         public HockeyCoach(string fullName, string startDate) : base(fullName)
         {
             this.StartDate = startDate; 
         }
+
 
         // Override the ToString() method to return a CSV
         public override string ToString()
