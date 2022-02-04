@@ -7,23 +7,13 @@ using System.Text.Json;
 const string HockeyPlayerCsvFile = "../../../HockeyPlayers.csv";
 const string HockeyTeamJsonFile = "../../../HockeyTeam.json";
 
-//string jsonString = File.ReadAllText(HockeyCoachsonFile);
-//HockeyCoach coach = new HockeyCoach("Dave Tippet", "May 28, 2019");
-//JsonSerializerOptions options = new JsonSerializerOptions
-//{
-//    WriteIndented = true,
-//    IncludeFields = true, 
-//};
-//string jsonOutputString = JsonSerializer.Serialize<HockeyCoach>(coach, options);
-//File.WriteAllText(HockeyCoachJsonFile, jsonOutputString);
-//string jsonInputString = File.ReadAllText(HockeyCoachJsonFile);
-////HockeyCoach inputCoach = JsonSerializer.Deserialize<HockeyCoach>(jsonInputString);
-//var personCopy = Newtonsoft.Json.JsonConvert.DeserializeObject<HockeyCoach>(jsonInputString, new Newtonsoft.Json.JsonSerializerSettings()
-//{
-//    ConstructorHandling = Newtonsoft.Json.ConstructorHandling.AllowNonPublicDefaultConstructor
-//});
-//WriteLine(personCopy);
-
+WriteLine("Creating CSV file for hockey players.");
+CreateHockeyPlayersCSVFile();
+HockeyTeam currentTeam = ReadHockeyPlayersCSVFile(HockeyPlayerCsvFile);
+DisplayHockeyTeam(currentTeam);
+WriteHockeyTeamToJsonFile(currentTeam, HockeyTeamJsonFile);
+currentTeam = ReadHockeyTeamFromJsonFile(HockeyTeamJsonFile);
+DisplayHockeyTeam(currentTeam);
 
 
 static void CreateHockeyPlayersCSVFile()
@@ -194,32 +184,6 @@ static HockeyTeam ReadHockeyTeamFromJsonFile(string jsonFilePath)
     return currentTeam;
 }
 
-
-//const string HockeyCoachJsonFile = "../../../HockeyCoach.json";
-//WriteLine("Creating CSV file for hockey players.");
-//CreateHockeyPlayersCSVFile();
-//HockeyTeam currentTeam = ReadHockeyPlayersCSVFile(HockeyPlayerCsvFile);
-//DisplayHockeyTeam(currentTeam);
-//WriteHockeyTeamToJsonFile(currentTeam, HockeyTeamJsonFile);
-//currentTeam = ReadHockeyTeamFromJsonFile(HockeyTeamJsonFile);
-//DisplayHockeyTeam(currentTeam);
-
-//// Read the list of hockey players from the CSV file
-//try
-//{
-//    WriteLine("Reading from CSV file");
-//    string[] csvLineArray = File.ReadAllLines(HockeyPlayerCsvFile);
-//    foreach(string line in csvLineArray)
-//    {
-//        HockeyPlayer currentPlayer = null;
-//        bool parseSuccessful = HockeyPlayer.TryParse(line, out currentPlayer);
-//        WriteLine(currentPlayer);
-//    }
-//}
-//catch (Exception ex)
-//{
-//    WriteLine(ex);
-//}
 
 
 

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace HockeyTeamSystem
@@ -12,13 +13,11 @@ namespace HockeyTeamSystem
     {
         // Define a readonly public field that can only be assigned a value
         // in the constructor
-        [JsonProperty]
+        //[JsonInclude]
         public readonly string StartDate;
-        //public string StartDate { get; set; }
 
         // Define a greedy constructor with fullName and startDate as parameters
         // The ": base(fullName)" means pass fullName to the base class (Person) constructor
-        [JsonConstructor]
         public HockeyCoach(string fullName, string startDate) : base(fullName)
         {
             this.StartDate = startDate; 

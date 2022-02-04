@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeyTeamSystem", "HockeyTeamSystem\HockeyTeamSystem.csproj", "{102AD655-8645-4B45-8918-0970F2543DFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HockeyTeamSystem", "HockeyTeamSystem\HockeyTeamSystem.csproj", "{102AD655-8645-4B45-8918-0970F2543DFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeyTeamSystemTest", "HockeyTeamSystemTest\HockeyTeamSystemTest.csproj", "{AA86B042-2A51-4289-A5D2-0541EE04DE8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{102AD655-8645-4B45-8918-0970F2543DFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{102AD655-8645-4B45-8918-0970F2543DFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{102AD655-8645-4B45-8918-0970F2543DFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA86B042-2A51-4289-A5D2-0541EE04DE8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA86B042-2A51-4289-A5D2-0541EE04DE8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA86B042-2A51-4289-A5D2-0541EE04DE8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA86B042-2A51-4289-A5D2-0541EE04DE8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

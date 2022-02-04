@@ -20,6 +20,7 @@ namespace HockeyTeamSystem
             if (string.IsNullOrWhiteSpace(fullName))
             {
                 throw new ArgumentNullException("Person FullName is required.");
+                //throw new ArgumentNullException("FullName","FullName is required.");
             }
             // Validate that the fullName parameter contains only
             // letters a-z and up to two space character
@@ -27,11 +28,11 @@ namespace HockeyTeamSystem
             // ^ start of input
             // $ end of input
             // [] range of characters
-            // {3,} at least 3
-            var fullNameCheck = new Regex(@"^[a-zA-Z \-]{3,}$");
+            // {5,} at least 5
+            var fullNameCheck = new Regex(@"^[a-zA-Z \-]{5,}$");
             if (fullNameCheck.IsMatch(fullName) == false)
             {
-                throw new ArgumentException("Person FullName must contain at least 3 characters.");
+                throw new ArgumentException("Person FullName must contain at least 5 characters.");
             }
 
             // The this keyword refers to the current object
