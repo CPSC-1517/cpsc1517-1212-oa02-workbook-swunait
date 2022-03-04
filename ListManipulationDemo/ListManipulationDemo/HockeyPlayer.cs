@@ -14,13 +14,13 @@ namespace ListManipulationDemo
         public int Assists { get; set; }
         public int Points { get { return Goals + Assists; } }
 
-        public HockeyPlayer()
-        {
-            PlayerName = "Ghost Rider";
-            GamesPlayed = 0;
-            Goals = 0;
-            Assists = 0;
-        }
+        //public HockeyPlayer()
+        //{
+        //    PlayerName = "Ghost Rider";
+        //    GamesPlayed = 0;
+        //    Goals = 0;
+        //    Assists = 0;
+        //}
         public HockeyPlayer(string playerName, int gamesPlayed, int goals, int assists)
         {
             PlayerName = playerName;
