@@ -16,7 +16,7 @@ namespace WestwindSystem.BLL
         }
         #endregion
 
-        public List<Category> GetAll()
+        public List<Category> GetAllCategory()
         {
             return _context.Categories.ToList();
         }

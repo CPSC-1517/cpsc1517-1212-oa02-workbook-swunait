@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WestwindWebApp", "WestwindWebApp\WestwindWebApp.csproj", "{4B91D54D-E2C0-4109-8125-F462D3F7F02C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WestwindWebApp", "WestwindWebApp\WestwindWebApp.csproj", "{4B91D54D-E2C0-4109-8125-F462D3F7F02C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WestwindSystem", "WestwindSystem\WestwindSystem.csproj", "{5578B800-2604-42A9-9480-513F294BDFB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WestwindSystem", "WestwindSystem\WestwindSystem.csproj", "{5578B800-2604-42A9-9480-513F294BDFB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
