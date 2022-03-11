@@ -11,9 +11,12 @@ namespace WestwindSystem.DAL
         }
         public WestwindContext(DbContextOptions<WestwindContext> options) : base(options)
         {
-
+            
         }
 
         public DbSet<Category> Categories { get; set; } = null!;
+
+        public DbSet<BuildVersion> BuildVersions { get; set; } = null!; 
+
     }
 }
