@@ -43,6 +43,12 @@ namespace WestwindSystem
                 return new CategoryServices(context);
             });
 
+            services.AddTransient<RegionServices>((serviceProvider) =>
+            {
+                var context = serviceProvider.GetService<WestwindContext>();
+                return new RegionServices(context);
+            });
+
         }
     }
 

@@ -16,9 +16,20 @@ namespace WestwindSystem.BLL
         }
         #endregion
 
-        public List<Category> GetAllCategory()
+        public List<Category> Category_List()
         {
-            return _context.Categories.ToList();
+            return _context
+                .Categories
+                .OrderBy(currentItem => currentItem.CategoryName)   // Sort the results by CategoryName
+                .ToList();
+        }
+
+        public Category? Category_GetById(int categoryId)
+        {
+            return _context
+                .Categories
+                .Where(currentItem => currentItem.CategoryId == categoryId)
+                .FirstOrDefault();
         }
 
     }
