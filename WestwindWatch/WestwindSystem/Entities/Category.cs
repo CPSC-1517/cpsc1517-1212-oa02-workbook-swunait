@@ -14,7 +14,7 @@ namespace WestwindSystem.Entities
 
         public string CategoryName { get; set; } = null!;
 
-        [Column(TypeName = "ntext")]
+        //[Column(TypeName = "ntext")]
         public string? Description { get; set; }
 
     }

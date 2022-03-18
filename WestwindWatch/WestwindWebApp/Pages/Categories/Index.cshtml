@@ -1,4 +1,6 @@
 ﻿@page
+@using WestwindSystem.Entities;
+
 @model WestwindWebApp.Pages.Categories.IndexModel
 @{
 }
@@ -15,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var item in Model.CategoryList)
+        @foreach(Category item in Model.CategoryList)
         {
             <tr>
                 <td>@item.CategoryId</td>

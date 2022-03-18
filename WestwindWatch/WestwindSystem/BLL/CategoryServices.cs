@@ -32,5 +32,13 @@ namespace WestwindSystem.BLL
                 .FirstOrDefault();
         }
 
+        public List<Category> Category_GetByPartialDescription(string partialDescription)
+        {
+            return _context
+                .Categories
+                .Where(currentItem => currentItem.Description.Contains(partialDescription))
+                .ToList();
+        }
+
     }
 }
