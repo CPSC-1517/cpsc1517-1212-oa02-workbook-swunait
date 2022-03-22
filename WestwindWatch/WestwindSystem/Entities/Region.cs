@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;    // for Key, Required, StringLength
+﻿#nullable disable
+using System.ComponentModel.DataAnnotations;    // for Key, Required, StringLength
 using System.ComponentModel.DataAnnotations.Schema; // for Table
 
 namespace WestwindSystem.Entities

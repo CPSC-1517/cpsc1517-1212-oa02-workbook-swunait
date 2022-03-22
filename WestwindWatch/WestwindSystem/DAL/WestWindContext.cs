@@ -20,6 +20,8 @@ namespace WestwindSystem.DAL
 
         public DbSet<Region> Regions { get; set; } = null!;
 
+        public DbSet<Territory> Territories { get; set; } = null!;
+
         public DbSet<BuildVersion> BuildVersions { get; set; } = null!; 
 
     }
