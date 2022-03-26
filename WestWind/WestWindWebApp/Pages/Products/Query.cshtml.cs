@@ -10,7 +10,7 @@ namespace WestWindWebApp.Pages.Products
 {
     public class QueryModel : PageModel
     {
-        #region Define a CategoryServices field and initialize it using constructor injection
+        #region Define a CategoryServices field and ProductServices field and initialize it using constructor injection
         private readonly CategoryServices _categoryServices;
         private readonly ProductServices _productServices;
         public QueryModel(CategoryServices categoryServices, ProductServices productServices)
@@ -21,7 +21,7 @@ namespace WestWindWebApp.Pages.Products
         #endregion
 
         #region Define properties for data the web page needs to access
-        [TempData]
+        [TempData] // TempData is useful for redirection, when data is needed for more than a single request.
         public string FeedbackMessage { get; set; }
         public List<Category> CategoryList { get; set; } = new();
 
@@ -43,8 +43,7 @@ namespace WestWindWebApp.Pages.Products
                 ProductQueryResultList = _productServices.Product_GetByCategoryID(SelectedCategoryID);
                 FeedbackMessage = $"Search returned {ProductQueryResultList.Count} result(s).";
             }
-
-            if (!string.IsNullOrWhiteSpace(ProductNameSearchValue))
+            else if (!string.IsNullOrWhiteSpace(ProductNameSearchValue))
             {
                 ProductQueryResultList = _productServices.Product_GetByPartialProductName(ProductNameSearchValue);
                 FeedbackMessage = $"Search returned {ProductQueryResultList.Count} result(s).";
@@ -75,7 +74,7 @@ namespace WestWindWebApp.Pages.Products
             FeedbackMessage = "";
             ModelState.Clear();
             ProductQueryResultList.Clear();
-            return RedirectToPage(new { SelectedCategoryID = (string?)null });
+            return RedirectToPage();
         }
     }
 }
