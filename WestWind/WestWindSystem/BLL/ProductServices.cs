@@ -21,6 +21,14 @@ namespace WestWindSystem.BLL
                 .Where(p => p.CategoryID == categoryID)
                 .ToList();
         }
+
+        public List<Product> Product_GetByPartialProductName(string partialProductName)
+        {
+            return _dbContext
+                .Products
+                .Where(p => p.ProductName.Contains(partialProductName))
+                .ToList();
+        }
         public Product Product_GetByID(int productID)
         {
             return _dbContext

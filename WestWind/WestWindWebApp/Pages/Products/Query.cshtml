@@ -1,4 +1,4 @@
-﻿@page "{SelectedCategoryID?}"
+﻿@page "{SelectedCategoryID?}/{ProductNameSearchValue?}"
 @model WestWindWebApp.Pages.Products.QueryModel
 @{
     ViewData["Title"] = "Product Query";
@@ -9,6 +9,10 @@
 <p>@Model.FeedbackMessage</p>
 
 <form method="post">
+
+    <label asp-for="ProductNameSearchValue">Product Name</label>
+    <input type="text" asp-for="ProductNameSearchValue" />
+
     <label asp-for="SelectedCategoryID">Category</label>
     <select asp-for="SelectedCategoryID">
         <option value="0">select...</option>
@@ -25,9 +29,11 @@
         }
     </select>
 
-    <button type="submit" asp-page-handler="Search">Search By Category</button>
+    <button type="submit" asp-page-handler="SearchByCategoryID">Search By Category</button>
 
-     <button type="submit" asp-page-handler="Clear">Clear</button>
+    <button type="submit" asp-page-handler="SearchByProductName">Search By Product Name</button>
+
+     <button type="submit" asp-page-handler="Clear" formnovalidate>Clear</button>
 
     @if(Model.ProductQueryResultList.Count > 0)
     {

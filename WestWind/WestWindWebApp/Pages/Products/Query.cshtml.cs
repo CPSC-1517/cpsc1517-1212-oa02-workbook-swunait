@@ -28,6 +28,9 @@ namespace WestWindWebApp.Pages.Products
         [BindProperty(SupportsGet = true)]
         public int SelectedCategoryID { get; set; }
 
+        [BindProperty(SupportsGet = true)]
+        public string ProductNameSearchValue { get; set; }
+
         public List<Product> ProductQueryResultList { get; set; } = new();
         #endregion
 
@@ -40,15 +43,31 @@ namespace WestWindWebApp.Pages.Products
                 ProductQueryResultList = _productServices.Product_GetByCategoryID(SelectedCategoryID);
                 FeedbackMessage = $"Search returned {ProductQueryResultList.Count} result(s).";
             }
+
+            if (!string.IsNullOrWhiteSpace(ProductNameSearchValue))
+            {
+                ProductQueryResultList = _productServices.Product_GetByPartialProductName(ProductNameSearchValue);
+                FeedbackMessage = $"Search returned {ProductQueryResultList.Count} result(s).";
+            }
+
         }
 
-        public IActionResult OnPostSearch()
+        public IActionResult OnPostSearchByCategoryID()
         {
             if (SelectedCategoryID == 0)
             {
                 FeedbackMessage = "You must select a category";
             }
             return RedirectToPage(new { SelectedCategoryID = SelectedCategoryID });
+        }
+
+        public IActionResult OnPostSearchByProductName()
+        {
+            if (string.IsNullOrWhiteSpace(ProductNameSearchValue))
+            {
+                FeedbackMessage = "You must enter a product name to search for.";
+            }
+            return RedirectToPage(new { ProductNameSearchValue = ProductNameSearchValue });
         }
 
         public IActionResult OnPostClear() // This method gets executed when asp-page-handler="Clear"
