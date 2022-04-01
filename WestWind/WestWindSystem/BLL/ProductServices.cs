@@ -29,6 +29,21 @@ namespace WestWindSystem.BLL
                 .Where(p => p.ProductName.Contains(partialProductName))
                 .ToList();
         }
+
+        public List<Product> Product_GetByPartialProductName(string partialProductName, 
+            int pageSize, int pageNumber, out int count)
+        {
+            var query = _dbContext
+                .Products
+                .Where(p => p.ProductName.Contains(partialProductName));
+
+            count = query.Count();
+
+            return query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+        }
         public Product Product_GetByID(int productID)
         {
             return _dbContext

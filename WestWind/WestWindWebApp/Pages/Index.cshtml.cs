@@ -7,6 +7,13 @@ namespace WestWindWebApp.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
+
+        Random rand = new Random();
+
+        public string[] names = { "Shane", "Kim", "Nidaa", "Nghi", "Ian" };
+
+        public string RandomName { get; set; }
+
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
@@ -14,6 +21,8 @@ namespace WestWindWebApp.Pages
 
         public void OnGet()
         {
+            int randomIndex = rand.Next(0, names.Length);
+            RandomName = names[randomIndex];
 
         }
     }
