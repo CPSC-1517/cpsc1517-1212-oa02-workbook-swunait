@@ -1,0 +1,66 @@
+﻿@page "{SelectedCategoryID?}"
+@model WestWindWebApp.Pages.Products.CategoryProductsModel
+@{
+    ViewData["Title"] = "Category Products";
+}
+
+<form method="post">
+    <label for="SelectedCategoryID">
+        Select a category
+
+        <select asp-for="SelectedCategoryID">
+            <option value="0">select...</option>
+            @foreach (var item in Model.CategoryList)
+            {
+                <option value="@item.CategoryID" 
+                    selected=@(item.CategoryID == Model.SelectedCategoryID)>
+                    @item.CategoryName
+                </option>
+                                   
+            }
+        </select>
+    </label>
+
+    @* Write code to display the Product Name, Supplier Name, Unit Size, Discontinued
+        for each product in the selected category
+    *@
+    @if(Model.CategoryProductList.Count > 0)
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Supplier Name</th>
+                    <th>Unit Size</th>
+                    <th>Discontinued</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach( var currentProduct in Model.CategoryProductList)
+                {
+                    <tr>
+                        <td>@currentProduct.ProductName</td>
+                        <td>
+                            <select disabled="disabled">
+                                @foreach(var currentSupplier in @Model.SupplierList)
+                                {
+                                    <option value="@currentSupplier.SupplierID"
+                                        selected=@(currentSupplier.SupplierID == currentProduct.SupplierID)>
+                                        @currentSupplier.CompanyName
+                                    </option>
+                                }
+                            </select>
+
+                        </td>
+                        <td>@currentProduct.QuantityPerUnit</td>
+                        <td><input type="checkbox" checked="@currentProduct.Discontinued"></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <button type="submit" asp-page-handler="Fetch">Fetch Products</button>
+    <button type="submit" asp-page-handler="Clear" formnovalidate>Clear</button>
+    <button type="submit" asp-page-handler="New" formnovalidate>New Product</button>
+</form>
