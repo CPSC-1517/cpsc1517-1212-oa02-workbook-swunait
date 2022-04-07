@@ -1,6 +1,8 @@
 ﻿using WestWindSystem.DAL; // for WestWindContext
 using WestWindSystem.Entities; // for Category
 
+using Microsoft.EntityFrameworkCore;    // for extensions methods 
+
 namespace WestWindSystem.BLL
 {
     public class CategoryServices
@@ -11,6 +13,47 @@ namespace WestWindSystem.BLL
         internal CategoryServices(WestWindContext context)
         {
             _dbContext = context;
+        }
+
+        public int Category_AddCategory(Category newCategory)
+        {
+            // Enforce business rule where CategoryName must be unique
+            bool exists = _dbContext.Categories.Any(c => c.CategoryName == newCategory.CategoryName);
+            if (exists)
+            {
+                throw new Exception($"The Category Name {newCategory.CategoryName} already exists!");
+            }
+
+            _dbContext.Categories.Add(newCategory);
+            _dbContext.SaveChanges();
+            return newCategory.CategoryID;
+        }
+
+        public int Category_UpdateCategory(Category existingCategory)
+        {
+            _dbContext.Categories.Attach(existingCategory).State = EntityState.Modified;
+            int rowsUpdated = _dbContext.SaveChanges();   
+            return rowsUpdated;
+        }
+
+        public int Category_DeleteCategory(Category existingCategory)
+        {
+            // Enfore business rule where categories with products cannot be deleted
+            int categoryProductCount = _dbContext.Categories
+                .Where(c => c.CategoryID == existingCategory.CategoryID)
+                .Include(c => c.Products)
+                .FirstOrDefault()
+                .Products
+                .Count();
+            if (categoryProductCount > 0)
+            {
+                throw new Exception("This categories has products and cannot be deleted.");
+            }
+
+
+            _dbContext.Categories.Attach(existingCategory).State = EntityState.Deleted;
+            int rowsDeleted = _dbContext.SaveChanges();
+            return rowsDeleted;
         }
 
         // Step 2: Define query methods of the Category entity
