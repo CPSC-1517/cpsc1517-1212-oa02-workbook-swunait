@@ -21,16 +21,20 @@ namespace WestWindWebApp.Pages.Categories
 
         [TempData]
         public string FeedbackMessage { get; set; }
-        public void OnGet(int? CurrentCategoryID)
+        public IActionResult OnGet(int? CurrentCategoryID)
         {
             if (CurrentCategoryID == null)
             {
                 CurrentCategory = new Category();
+                return Page();
             }
-            else
+
+            CurrentCategory = _categoryServices.Category_GetById((int) CurrentCategoryID);
+            if (CurrentCategory == null)
             {
-                CurrentCategory = _categoryServices.Category_GetById((int) CurrentCategoryID);
+                return RedirectToPage("/Categories/Index");
             }
+            return Page();
         }
 
         public IActionResult OnPostNew()
@@ -47,6 +51,49 @@ namespace WestWindWebApp.Pages.Categories
                     FeedbackMessage = $"Error creating category with exception {ex.Message}";
                     return Page();
                 }
+            }
+            else
+            {
+                FeedbackMessage = $"ModelState is not valid";
+                return Page();
+            }
+            return RedirectToPage("/Categories/Index");
+        }
+
+        public IActionResult OnPostUpdate()
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    int rowsUpdated = _categoryServices.Category_UpdateCategory(CurrentCategory);
+                    FeedbackMessage = $"Successfully updated {rowsUpdated} category";
+                }
+                catch(Exception ex)
+                {
+                    FeedbackMessage = $"Error updating category with exception {ex.Message}";
+                    return Page();
+                }
+            }
+            else
+            {
+                FeedbackMessage = $"ModelState is invalid";
+                return Page();
+            }
+            return RedirectToPage("/Categories/Index");
+        }
+
+        public IActionResult OnPostDelete()
+        {
+            try
+            {
+                int rowsDeleted = _categoryServices.Category_DeleteCategory(CurrentCategory.CategoryID);
+                FeedbackMessage = $"Successfully deleted {rowsDeleted} records.";
+            }
+            catch(Exception ex)
+            {
+                FeedbackMessage = $"Error deleting category with exception {ex.Message}";
+                return Page();
             }
             return RedirectToPage("/Categories/Index");
         }
