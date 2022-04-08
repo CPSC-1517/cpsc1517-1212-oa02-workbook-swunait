@@ -54,7 +54,7 @@ namespace WestWindWebApp.Pages.Categories
             }
             else
             {
-                FeedbackMessage = $"ModelState is not valid";
+                //FeedbackMessage = $"ModelState is not valid";
                 return Page();
             }
             return RedirectToPage("/Categories/Index");
@@ -77,7 +77,7 @@ namespace WestWindWebApp.Pages.Categories
             }
             else
             {
-                FeedbackMessage = $"ModelState is invalid";
+                //FeedbackMessage = $"ModelState is invalid";
                 return Page();
             }
             return RedirectToPage("/Categories/Index");
@@ -96,6 +96,20 @@ namespace WestWindWebApp.Pages.Categories
                 return Page();
             }
             return RedirectToPage("/Categories/Index");
+        }
+
+        public IActionResult OnPostClear()
+        {
+            if (CurrentCategory.CategoryID == 0)
+            {
+                FeedbackMessage = "";
+                ModelState.Clear();
+                return RedirectToPage("/Categories/CategoryCRUD");
+            }
+            else
+            {
+                return RedirectToPage("/Categories/Index");
+            }
         }
     }
 }
