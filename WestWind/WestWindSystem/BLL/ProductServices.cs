@@ -90,10 +90,11 @@ namespace WestWindSystem.BLL
         }
         public Product Product_GetByID(int productID)
         {
-            return _dbContext
+            Product info = _dbContext
                 .Products
                 .Where(p => p.ProductID == productID)
                 .FirstOrDefault();
+            return info;
 
         }
 

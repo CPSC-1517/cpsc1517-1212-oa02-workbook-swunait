@@ -87,14 +87,16 @@ namespace WestWindWebApp.Pages.Products
                 new { SelectedCategoryID = SelectedCategoryID });
         }
 
-        public void OnPostClear()
+        public IActionResult OnPostClear()
         {
-
+            FeedbackMessage = "";
+            ModelState.Clear();
+            return RedirectToPage(new { SelectedCategoryID = (int?)null });
         }
 
-        public void OnPostNew()
+        public IActionResult OnPostNew()
         {
-
+            return RedirectToPage("/Products/ProductCRUD");
         }
     }
 }
