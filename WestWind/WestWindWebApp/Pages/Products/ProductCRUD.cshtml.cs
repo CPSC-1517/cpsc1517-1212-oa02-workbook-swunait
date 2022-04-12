@@ -34,9 +34,24 @@ namespace WestWindWebApp.Pages.Products
 
         [BindProperty]
         public Product CurrentProduct { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public int? ProductID { get; set; }
         
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if (ProductID == null)
+            {
+                CurrentProduct = new Product();
+                return Page();
+            }
+
+            CurrentProduct = _productServices.Product_GetByID((int)ProductID);
+            if (CurrentProduct == null)
+            {
+                return RedirectToPage("/Products/CategoryProducts");
+            }
+            return Page();
         }
 
         [TempData]
@@ -71,6 +86,49 @@ namespace WestWindWebApp.Pages.Products
         {
             return Redirect("/Products/CategoryProducts");
         }
+
+        public IActionResult OnPostUpdate()
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    int rowsUpdated = _productServices.Product_UpdateProduct(CurrentProduct);
+                    FeedbackMessage = $"Successfully updated {rowsUpdated} product";
+                }
+                catch (Exception ex)
+                {
+                    FeedbackMessage = $"Error updating product with exception {ex.Message}";
+                }
+            }
+
+            return Page();
+        }
+
+        public IActionResult OnPostDelete()
+        {
+            try
+            {
+                int rowsDeleted = _productServices.Product_DeleteProduct(CurrentProduct);
+                if (rowsDeleted > 0)
+                {
+                    FeedbackMessage = $"Successfully discontinued {rowsDeleted} records.";
+                    CurrentProduct.Discontinued = true;
+                    return RedirectToPage(new { productID = CurrentProduct.ProductID });
+                }
+                else
+                {
+                    FeedbackMessage = $"No products were affected. Refresh search and try again.";
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                FeedbackMessage = $"Error deleting product with exception {ex.Message}";
+            }
+            return Page();
+        }
+
 
         private Exception GetInnerException(Exception ex)
         {

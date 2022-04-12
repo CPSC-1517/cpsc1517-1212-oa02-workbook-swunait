@@ -39,7 +39,13 @@
                 @foreach( var currentProduct in Model.CategoryProductList)
                 {
                     <tr>
-                        <td>@currentProduct.ProductName</td>
+                        <td>
+                            <a title="Edit"
+                                asp-page="/Products/ProductCRUD"
+                                asp-route-productID="@currentProduct.ProductID">
+                                @currentProduct.ProductName
+                            </a>
+                        </td>
                         <td>
                             <select disabled="disabled">
                                 @foreach(var currentSupplier in @Model.SupplierList)
